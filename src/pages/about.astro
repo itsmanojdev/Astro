@@ -1,5 +1,17 @@
 ---
+const pageTitle = "About Me";
 
+const identity = {
+  firstName: "Sarah",
+  country: "Canada",
+  occupation: "Technical Writer",
+  hobbies: ["photography", "birdwatching", "baseball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const showHobby3 = false;
+const skillsLimit = 3;
 ---
 
 <html lang="en">
@@ -9,7 +21,7 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<a href="/">Home</a>
@@ -18,6 +30,14 @@
 
 
 		<h1>About</h1>
-		<p>About Page</p>
+        <p>{pageTitle}</p>
+
+        <p>Name: {identity.firstName}. I am from {identity.country}</p>
+        <p>Favorite hobbies are {identity.hobbies[0]} & {identity.hobbies[1]}</p>
+        {showHobby3 && <p>Hidden skill: {identity.hobbies[2]}</p>}
+        {skillsLimit > 2 ? <p>Skills -> </p>
+        <ul>
+            {skills.map((ele) => <li>{ele}</li>)}
+        </ul>: <p>Skills are hidden</p>}
 	</body>
 </html>
