@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 const pageTitle = "About Me";
 
 const identity = {
@@ -12,6 +14,10 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 
 const showHobby3 = false;
 const skillsLimit = 3;
+
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -22,6 +28,17 @@ const skillsLimit = 3;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+        <style define:vars={{skillColor, fontWeight, textCase}}>
+        h1 {
+            color: purple;
+            font-size: 4rem;
+        }
+        .skill {
+            color: var(--skillColor);
+            font-weight: var(--fontWeight);
+            text-transform: var(--textCase);
+        }
+        </style>
 	</head>
 	<body>
 		<a href="/">Home</a>
@@ -37,7 +54,7 @@ const skillsLimit = 3;
         {showHobby3 && <p>Hidden skill: {identity.hobbies[2]}</p>}
         {skillsLimit > 2 ? <p>Skills -> </p>
         <ul>
-            {skills.map((ele) => <li>{ele}</li>)}
+            {skills.map((ele) => <li class="skill">{ele}</li>)}
         </ul>: <p>Skills are hidden</p>}
 	</body>
 </html>
